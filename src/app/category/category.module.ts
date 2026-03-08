@@ -24,6 +24,7 @@ import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [
     {
