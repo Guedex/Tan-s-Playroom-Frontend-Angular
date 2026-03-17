@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import {GameModule} from './game/game.module';
+import { ClientModule } from './client/client.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {GameModule} from './game/game.module';
     ReactiveFormsModule,
     MatDialogModule,
     HttpClientModule,
-    GameModule
+    GameModule,
+    ClientModule,
   ],
   providers: [
     provideClientHydration(),

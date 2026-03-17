@@ -23,13 +23,16 @@ export class ClientService {
     }
 
     saveClient(client: Client): Observable<void> {
-        if (client.id != null) clientApiURL += '/'+client.id;
-
-        return this.http.put<void>(clientApiURL, client);
-    }
+        const url =
+          client.id != null
+            ? `${clientApiURL}/${client.id}`   // actualizar
+            : clientApiURL;                    // crear
+      
+        return this.http.put<void>(url, client);
+      }
 
     deleteClient(idClient : number): Observable<void> {
-        return this.http.delete<void>(clientApiURL+idClient);
+        return this.http.delete<void>(clientApiURL+'/'+idClient);
     }
 
     getAllClients(): Observable<Client[]> {

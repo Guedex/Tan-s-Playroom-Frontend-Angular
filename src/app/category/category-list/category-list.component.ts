@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Category } from '../model/Category';
-import { CategoryService } from '../category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
+
+import { Category } from '../model/Category';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-category-list',

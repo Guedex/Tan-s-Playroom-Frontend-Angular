@@ -1,1 +1,23 @@
-<p>client-edit works!</p>
+<div class="container">
+    <h2 mat-dialog-title>{{ data.client ? 'Editar cliente' : 'Nuevo cliente' }}</h2>
+  
+    <mat-dialog-content>
+      <form>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="client.name" name="name" required />
+        </mat-form-field>
+  
+        <mat-error *ngIf="errorMessage">
+          {{ errorMessage }}
+        </mat-error>
+  
+      </form>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions class="buttons">
+      <button mat-button (click)="onClose()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
+    </mat-dialog-actions>
+  </div>
+  

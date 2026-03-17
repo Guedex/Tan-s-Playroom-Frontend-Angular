@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClientEditComponent } from '../client-edit/client-edit.component';
 import { Pageable } from '../../core/Model/Page/Pageable';
 import { PageEvent } from '@angular/material/paginator';
+import { DialogConfirmationComponent } from "../../core/dialog-confirmation/dialog-confirmation.component";
 
 @Component({
   selector: 'app-client-list',
@@ -20,7 +21,7 @@ export class ClientListComponent {
   totalElements: number = 0;
 
   dataSource = new MatTableDataSource<Client>();
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'action'];
 
   constructor( private clientService: ClientService, public dialog: MatDialog) { 
     
@@ -36,6 +37,54 @@ export class ClientListComponent {
       pageSize: this.pageSize,
       sort: [{ 
         property: 'id', 
-        direction: 'ASC' }] };
+        direction: 'ASC' }] 
+      };
+  
+
+  if (event != null) {
+    pageable.pageSize = event.pageSize;
+    pageable.pageNumber = event.pageIndex;
+  }
+
+  this.clientService.getClients(pageable).subscribe(data => {
+    this.dataSource.data = data.content;
+    this.pageNumber = data.pageable.pageNumber;
+    this.pageSize = data.pageable.pageSize;
+    this.totalElements = data.totalElements;
+  });
+
+}
+createClient() {
+  const dialogRef = this.dialog.open(ClientEditComponent, {
+    data: {}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    this.ngOnInit();
+  });
+}
+
+
+editClient(client: Client) {
+  const dialogRef = this.dialog.open(ClientEditComponent, {
+    data: { client: client }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    this.ngOnInit();
+  });
+}
+
+  deleteClient(client: Client) {
+    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+      data: { title: "Eliminar cliente", description: "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?" }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.clientService.deleteClient(client.id).subscribe(result => {
+          this.ngOnInit();
+        });
+      }
+    });
   }
 }
