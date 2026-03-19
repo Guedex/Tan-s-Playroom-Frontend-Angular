@@ -6,16 +6,30 @@ import { Game } from './model/Game';
 @Injectable({
     providedIn: 'root'
 })
+/**
+ * Service responsible for game queries and persistence.
+ */
 export class GameService {
 
     constructor(
         private http: HttpClient
     ) { }
 
+    /**
+     * Returns games filtered by optional title and category.
+     * @param title Optional game title filter.
+     * @param categoryId Optional category identifier filter.
+     * @returns Observable list of games.
+     */
     getGames(title?: String, categoryId?: number): Observable<Game[]> {            
         return this.http.get<Game[]>(this.composeFindUrl(title, categoryId));
     }
 
+    /**
+     * Creates or updates a game.
+     * @param game Game to persist.
+     * @returns Completion observable.
+     */
     saveGame(game: Game): Observable<void> {
         let url = 'http://localhost:8080/game';
 
@@ -26,6 +40,12 @@ export class GameService {
         return this.http.put<void>(url, game);
     }
 
+    /**
+     * Composes backend query URL for game filters.
+     * @param title Optional title filter.
+     * @param categoryId Optional category filter.
+     * @returns Full URL including query string.
+     */
     private composeFindUrl(title?: String, categoryId?: number) : string {
         let params = '';
 

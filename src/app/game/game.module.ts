@@ -38,4 +38,7 @@ imports: [
     MatCardModule,
 ]
 })
+/**
+ * Feature module that encapsulates game listing and edition components.
+ */
 export class GameModule { }

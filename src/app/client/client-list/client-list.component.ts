@@ -14,6 +14,9 @@ import { DialogConfirmationComponent } from "../../core/dialog-confirmation/dial
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss'
 })
+/**
+ * List screen for client pagination and CRUD actions.
+ */
 export class ClientListComponent {
 
   pageNumber: number = 0;
@@ -27,10 +30,17 @@ export class ClientListComponent {
     
   }
 
+  /**
+   * Loads first page when component starts.
+   */
   ngOnInit(): void {
     this.loadPage();
   }
 
+  /**
+   * Loads client data for current or selected page.
+   * @param event Optional paginator event.
+   */
   loadPage(event?: PageEvent) {
     let pageable : Pageable = 
     { pageNumber: this.pageNumber, 
@@ -54,6 +64,9 @@ export class ClientListComponent {
   });
 
 }
+/**
+ * Opens dialog to create a new client.
+ */
 createClient() {
   const dialogRef = this.dialog.open(ClientEditComponent, {
     data: {}
@@ -65,6 +78,10 @@ createClient() {
 }
 
 
+/**
+ * Opens dialog to edit selected client.
+ * @param client Client to edit.
+ */
 editClient(client: Client) {
   const dialogRef = this.dialog.open(ClientEditComponent, {
     data: { client: client }
@@ -75,6 +92,10 @@ editClient(client: Client) {
   });
 }
 
+  /**
+   * Confirms and deletes selected client.
+   * @param client Client to delete.
+   */
   deleteClient(client: Client) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: { title: "Eliminar cliente", description: "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?" }

@@ -12,6 +12,9 @@ import { Game } from '../model/Game';
     templateUrl: './game-edit.component.html',
     styleUrls: ['./game-edit.component.scss']
 })
+/**
+ * Dialog component used to create or edit games.
+ */
 export class GameEditComponent implements OnInit {
 
     game!: Game; 
@@ -26,6 +29,9 @@ export class GameEditComponent implements OnInit {
         private authorService: AuthorService,
     ) { }
 
+    /**
+     * Initializes game model and loads author/category dropdown data.
+     */
     ngOnInit(): void {
         if (this.data.game != null) {
             this.game = Object.assign({}, this.data.game);
@@ -61,12 +67,18 @@ export class GameEditComponent implements OnInit {
         );
     }
 
+    /**
+     * Saves game and closes dialog.
+     */
     onSave() {
         this.gameService.saveGame(this.game).subscribe(result => {
             this.dialogRef.close();
         });    
     }  
 
+    /**
+     * Closes dialog without saving.
+     */
     onClose() {
         this.dialogRef.close();
     }

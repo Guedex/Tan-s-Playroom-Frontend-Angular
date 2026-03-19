@@ -50,4 +50,7 @@ import { LoanModule } from './loan/loan.module';
   ],
   bootstrap: [AppComponent]
 })
+/**
+ * Main application module that wires feature modules and shared dependencies.
+ */
 export class AppModule { }

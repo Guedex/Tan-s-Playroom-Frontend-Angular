@@ -1,17 +1,17 @@
 .container {
-    min-width: 350px;
-    max-width: 500px;
-    padding: 20px;
+    min-width: 21.875rem;
+    max-width: 31.25rem;
+    padding: 1.25rem;
 
     .description {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     .buttons {
       text-align: right;
 
       button {
-          margin-left: 10px;
+          margin-left: 0.625rem;
       }
     }
 } 

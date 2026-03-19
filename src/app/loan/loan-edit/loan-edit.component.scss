@@ -1,0 +1,31 @@
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    padding-top: 12px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .dates-label {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 4px 0;
+  }
+  
+  .dates-row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .half-width {
+    flex: 1;
+  }
+  
+  mat-dialog-actions {
+    padding: 8px 0;
+    gap: 8px;
+  }
+  

@@ -19,4 +19,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+/**
+ * Root routing module defining top-level navigation paths.
+ */
 export class AppRoutingModule { }

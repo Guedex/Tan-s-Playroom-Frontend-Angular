@@ -1,0 +1,47 @@
+.container {
+    margin: 1.25rem;
+
+    mat-table {
+        mat-row:nth-child(odd),
+        .mat-row:nth-child(odd),
+        .mat-mdc-row:nth-child(odd) {
+            background-color: rgba(63, 81, 181, 0.12);
+        }
+    }
+
+    .filters {
+        display: flex;
+
+        mat-form-field {
+            width: 18.75rem;
+            margin-right: 1.25rem;
+        }
+
+        .buttons {
+            flex: auto;
+            align-self: center;
+
+            button {
+                margin-left: 0.9375rem;
+            }
+        }
+    }
+
+    .game-list { 
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+
+        display: flex;
+        flex-flow: wrap;
+        overflow: auto;  
+    }
+
+    .buttons {
+        margin-top: 1rem;
+        text-align: right;
+    }
+}
+
+button {
+    width: 10rem;
+}

@@ -6,9 +6,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './dialog-confirmation.component.html',
   styleUrls: ['./dialog-confirmation.component.scss']
 })
+/**
+ * Generic confirmation dialog used to ask the user for an explicit decision.
+ */
 export class DialogConfirmationComponent implements OnInit {
 
+  /** Dialog title text. */
   title! : string;
+  /** Dialog body text (supports HTML content). */
   description! : string;
 
   constructor(
@@ -16,16 +21,18 @@ export class DialogConfirmationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  /**
+   * Initializes dialog texts from injected data.
+   */
   ngOnInit(): void {
     this.title = this.data.title;
     this.description = this.data.description;
   }
 
-  onYes() {
+  /**
+   * Closes the dialog returning confirmation.
+   */
+  onClose() {
     this.dialogRef.close(true);
-  }
-
-  onNo() {
-    this.dialogRef.close(false);
   }
 }

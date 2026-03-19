@@ -12,6 +12,9 @@ import { CategoryService } from '../category.service';
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.scss'
 })
+/**
+ * List screen for category search, creation, edition and deletion.
+ */
 export class CategoryListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Category>();
@@ -21,6 +24,9 @@ export class CategoryListComponent implements OnInit {
     
   }
 
+  /**
+   * Opens category creation dialog.
+   */
   createCategory() {    
     const dialogRef = this.dialog.open(CategoryEditComponent, {
       data: {}
@@ -31,6 +37,10 @@ export class CategoryListComponent implements OnInit {
     });    
   } 
 
+   /**
+    * Opens category edition dialog.
+    * @param category Category to edit.
+    */
    editCategory(category: Category) {
     const dialogRef = this.dialog.open(CategoryEditComponent, {
       data: { category: category }
@@ -41,6 +51,10 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
+  /**
+   * Requests category deletion after user confirmation.
+   * @param category Category to delete.
+   */
   deleteCategory(category: Category) {    
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: { title: "Eliminar categoría", description: "Atención si borra la categoría se perderán sus datos.<br> ¿Desea eliminar la categoría?" }
@@ -55,6 +69,9 @@ export class CategoryListComponent implements OnInit {
     });
   }  
 
+  /**
+   * Loads category table data.
+   */
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(
       categories => this.dataSource.data = categories

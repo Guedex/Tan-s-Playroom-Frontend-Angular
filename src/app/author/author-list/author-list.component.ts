@@ -13,6 +13,9 @@ selector: 'app-author-list',
 templateUrl: './author-list.component.html',
 styleUrls: ['./author-list.component.scss']
 })
+/**
+ * List screen for author pagination and CRUD actions.
+ */
 export class AuthorListComponent implements OnInit {
 
     pageNumber: number = 0;
@@ -27,10 +30,17 @@ export class AuthorListComponent implements OnInit {
         public dialog: MatDialog,
     ) { }
 
+    /**
+     * Loads first page on component init.
+     */
     ngOnInit(): void {
         this.loadPage();
     }
 
+    /**
+     * Loads author page and refreshes table data.
+     * @param event Optional paginator event.
+     */
     loadPage(event?: PageEvent) {
 
         let pageable : Pageable =  {
@@ -56,6 +66,9 @@ export class AuthorListComponent implements OnInit {
 
     }  
 
+    /**
+     * Opens dialog to create a new author.
+     */
     createAuthor() {      
         const dialogRef = this.dialog.open(AuthorEditComponent, {
             data: {}
@@ -66,6 +79,10 @@ export class AuthorListComponent implements OnInit {
         });      
     }  
 
+    /**
+     * Opens dialog to edit selected author.
+     * @param author Author to edit.
+     */
     editAuthor(author: Author) {    
         const dialogRef = this.dialog.open(AuthorEditComponent, {
             data: { author: author }
@@ -76,6 +93,10 @@ export class AuthorListComponent implements OnInit {
         });    
     }
 
+    /**
+     * Confirms and deletes selected author.
+     * @param author Author to delete.
+     */
     deleteAuthor(author: Author) {    
         const dialogRef = this.dialog.open(DialogConfirmationComponent, {
             data: { title: "Eliminar autor", description: "Atención si borra el autor se perderán sus datos.<br> ¿Desea eliminar el autor?" }

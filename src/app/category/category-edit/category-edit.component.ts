@@ -9,6 +9,9 @@ import { Category } from '../model/Category';
   templateUrl: './category-edit.component.html',
   styleUrls: ['./category-edit.component.scss']
 })
+/**
+ * Dialog component to create or edit a category.
+ */
 export class CategoryEditComponent implements OnInit {
 
   category! : Category;
@@ -19,6 +22,9 @@ export class CategoryEditComponent implements OnInit {
     private categoryService: CategoryService
   ) { }
 
+  /**
+   * Initializes form model from dialog data.
+   */
   ngOnInit(): void {
     if (this.data.category != null) {
       this.category = Object.assign({}, this.data.category);
@@ -28,12 +34,18 @@ export class CategoryEditComponent implements OnInit {
     }
   }
 
+  /**
+   * Persists current category and closes dialog.
+   */
   onSave() {
     this.categoryService.saveCategory(this.category).subscribe(result => {
       this.dialogRef.close();
     });    
   }  
 
+  /**
+   * Closes dialog without saving changes.
+   */
   onClose() {
     this.dialogRef.close();
   }

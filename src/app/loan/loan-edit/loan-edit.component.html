@@ -1,1 +1,53 @@
-<p>loan-edit works!</p>
+<h2 mat-dialog-title>{{ loan.id != null ? 'Editar' : 'Crear' }} préstamo</h2>
+
+<h2 mat-dialog-title>Préstamo</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Identificador</mat-label>
+    <input matInput [(ngModel)]="loan.id" readonly>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nombre cliente...</mat-label>
+    <mat-select [(ngModel)]="loan.client" [compareWith]="compareById">
+      <mat-option *ngFor="let client of clients" [value]="client">
+        {{ client.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nombre juego...</mat-label>
+    <mat-select [(ngModel)]="loan.game" [compareWith]="compareById">
+      <mat-option *ngFor="let game of games" [value]="game">
+        {{ game.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p class="dates-label">Fechas de préstamo</p>
+
+  <div class="dates-row">
+    <mat-form-field appearance="outline" class="half-width">
+      <mat-label>Fecha inicio</mat-label>
+      <input matInput [matDatepicker]="pickerStart" [(ngModel)]="loan.loanDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="half-width">
+      <mat-label>Fecha fin</mat-label>
+      <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="loan.returnDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onClose()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+</mat-dialog-actions>

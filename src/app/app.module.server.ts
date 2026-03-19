@@ -11,4 +11,7 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent],
 })
+/**
+ * Server-side module used for Angular SSR bootstrap.
+ */
 export class AppServerModule {}

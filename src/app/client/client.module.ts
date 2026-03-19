@@ -42,4 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     },
   ]
 })
+/**
+ * Feature module that encapsulates client management screens.
+ */
 export class ClientModule { }

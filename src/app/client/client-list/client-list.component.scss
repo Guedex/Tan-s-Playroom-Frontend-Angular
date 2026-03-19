@@ -1,9 +1,15 @@
 .container {
-    margin: 20px;
+    margin: 1.25rem;
   
     mat-table {
-      margin-top: 10px;
-      margin-bottom: 20px;
+      margin-top: 0.625rem;
+      margin-bottom: 1.25rem;
+
+      mat-row:nth-child(odd),
+      .mat-row:nth-child(odd),
+      .mat-mdc-row:nth-child(odd) {
+        background-color: rgba(63, 81, 181, 0.12);
+      }
   
       .mat-header-row {
         background-color:#f5f5f5;
@@ -27,6 +33,7 @@
     }
   
     .buttons {
+      margin-top: 1rem;
       text-align: right;
     }
   }

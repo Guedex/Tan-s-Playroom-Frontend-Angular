@@ -35,4 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     },
   ]
 })
+/**
+ * Feature module that encapsulates category management screens.
+ */
 export class CategoryModule { }

@@ -25,4 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     HeaderComponent
   ]
 })
+/**
+ * Shared core module containing layout and reusable dialog components.
+ */
 export class CoreModule { }

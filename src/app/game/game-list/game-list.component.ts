@@ -11,6 +11,9 @@ import { Game } from '../model/Game';
     templateUrl: './game-list.component.html',
     styleUrls: ['./game-list.component.scss']
 })
+/**
+ * List screen for game filtering and edit/create actions.
+ */
 export class GameListComponent implements OnInit {
 
     categories : Category[] = [];
@@ -24,6 +27,9 @@ export class GameListComponent implements OnInit {
         public dialog: MatDialog,
     ) { }
 
+    /**
+     * Loads initial games and available categories.
+     */
     ngOnInit(): void {
 
         this.gameService.getGames().subscribe(
@@ -35,12 +41,18 @@ export class GameListComponent implements OnInit {
         );
     }
 
+    /**
+     * Clears filters and performs a new search.
+     */
     onCleanFilter(): void {
         this.filterTitle = null;
         this.filterCategory = null;
         this.onSearch();
     }
 
+    /**
+     * Searches games with active filters.
+     */
     onSearch(): void {
 
         let title = this.filterTitle;
@@ -51,6 +63,9 @@ export class GameListComponent implements OnInit {
         );
     }
 
+    /**
+     * Opens dialog to create a game.
+     */
     createGame() {    
         const dialogRef = this.dialog.open(GameEditComponent, {
             data: {}
@@ -61,6 +76,10 @@ export class GameListComponent implements OnInit {
         });    
     }  
 
+    /**
+     * Opens dialog to edit selected game.
+     * @param game Game to edit.
+     */
     editGame(game: Game) {
         const dialogRef = this.dialog.open(GameEditComponent, {
             data: { game: game }

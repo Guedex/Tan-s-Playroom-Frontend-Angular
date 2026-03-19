@@ -9,6 +9,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './client-edit.component.html',
   styleUrl: './client-edit.component.scss'
 })
+/**
+ * Dialog component used to create or edit clients.
+ */
 export class ClientEditComponent implements OnInit{
 
   client! : Client;
@@ -20,6 +23,9 @@ export class ClientEditComponent implements OnInit{
     private clientService: ClientService
   ) { }
 
+  /**
+   * Initializes model from injected dialog data.
+   */
   ngOnInit(): void {
     if (this.data.client != null) {
       this.client = Object.assign({}, this.data.client);
@@ -29,6 +35,9 @@ export class ClientEditComponent implements OnInit{
     }
   }
 
+  /**
+   * Persists current client and handles backend validation errors.
+   */
   onSave() {
     this.errorMessage = ''; 
     this.clientService.saveClient(this.client).subscribe({
@@ -44,6 +53,9 @@ export class ClientEditComponent implements OnInit{
     });
   }
 
+  /**
+   * Closes dialog without saving.
+   */
   onClose() {
     this.dialogRef.close();
   }

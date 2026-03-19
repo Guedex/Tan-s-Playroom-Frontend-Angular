@@ -37,4 +37,7 @@ providers: [
     },
 ]
 })
+/**
+ * Feature module that encapsulates author management screens.
+ */
 export class AuthorModule { }

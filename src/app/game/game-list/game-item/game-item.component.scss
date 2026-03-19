@@ -1,42 +1,42 @@
 .container {
     display: flex;
-    width: 325px;
+    width: 20.3125rem;
 
     mat-card {
         width: 100%;
-        margin: 10px;
+        margin: 0.625rem;
         display: flex;
         background-color: #3835ec57;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 0.625rem;
+        border-radius: 0.625rem;
+        box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
         cursor: pointer;
         &:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.2);
             background-color: #f5f5f5;
         }
         .photo {
-            margin-right: 10px;
+            margin-right: 0.625rem;
 
             img {
-                width: 80px;
-                height: 80px;
+                width: 5rem;
+                height: 5rem;
             }
         }
 
         .detail {
             .title {
-                font-size: 14px;
+                font-size: 0.875rem;
                 font-weight: bold;
             }
 
             .properties {
-                font-size: 11px;
+                font-size: 0.6875rem;
 
                 div {
-                    height: 15px;
+                    height: 0.9375rem;
                 }                
             }
         }

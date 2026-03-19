@@ -5,6 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
+/**
+ * Placeholder client component for feature container use.
+ */
 export class ClientComponent {
 
 }

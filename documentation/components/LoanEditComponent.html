@@ -1,0 +1,1170 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>tutorial documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">tutorial documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LoanEditComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/loan/loan-edit/loan-edit.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-loan-edit</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./loan-edit.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./loan-edit.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clients" >clients</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialogRef" >dialogRef</a>
+                            </li>
+                            <li>
+                                <a href="#games" >games</a>
+                            </li>
+                            <li>
+                                <a href="#loan" >loan</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#compareById" >compareById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getBackendErrorMessage" >getBackendErrorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadNextIdForCreate" >loadNextIdForCreate</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClose" >onClose</a>
+                            </li>
+                            <li>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(loanService: <a href="../injectables/LoanService.html" target="_self">LoanService</a>, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, clientService: <a href="../injectables/ClientService.html" target="_self">ClientService</a>, dialog: MatDialog, dialogRef: <a href="../classes/Loan.html" target="_self">MatDialogRef&lt;LoanEditComponent&gt;</a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>loanService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoanService.html" target="_self" >LoanService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>gameService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>clientService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ClientService.html" target="_self" >ClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Loan.html" target="_self" >MatDialogRef&lt;LoanEditComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareById"></a>
+                    <span class="name">
+                        <span ><b>compareById</b></span>
+                        <a href="#compareById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareById(o1: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, o2: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Compares select options by id to preserve selected values.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>o1</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>First option.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>o2</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Second option.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>True when both options represent the same entity.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBackendErrorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getBackendErrorMessage</b></span>
+                        <a href="#getBackendErrorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getBackendErrorMessage(err: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Extracts a user-friendly error message from backend responses.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>HTTP error response object.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Message text to display in UI.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadNextIdForCreate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadNextIdForCreate</b></span>
+                        <a href="#loadNextIdForCreate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadNextIdForCreate()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Preloads next id to display a non-editable identifier in create mode.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes model and loads dropdown data.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClose"></a>
+                    <span class="name">
+                        <span ><b>onClose</b></span>
+                        <a href="#onClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClose()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes dialog without saving changes.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Persists loan and shows backend error message in dialog when needed.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clients"></a>
+                    <span class="name">
+                        <span ><b>clients</b></span>
+                        <a href="#clients"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Client.html" target="_self" >Client[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(MAT_DIALOG_DATA)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogRef"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialogRef</b></span>
+                        <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Loan.html" target="_self" >MatDialogRef&lt;LoanEditComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="games"></a>
+                    <span class="name">
+                        <span ><b>games</b></span>
+                        <a href="#games"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Game.html" target="_self" >Game[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loan"></a>
+                    <span class="name">
+                        <span ><b>loan</b></span>
+                        <a href="#loan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Loan.html" target="_self" >Loan</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject, OnInit } from &#x27;@angular/core&#x27;;
+import { LoanService } from &#x27;../loan.service&#x27;;
+import { Loan } from &#x27;../model/Loan&#x27;;
+import { MatDialogRef, MAT_DIALOG_DATA } from &#x27;@angular/material/dialog&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { GameService } from &#x27;../../game/game.service&#x27;;
+import { ClientService } from &#x27;../../client/client.service&#x27;;
+import { Game } from &#x27;../../game/model/Game&#x27;;
+import { Client } from &#x27;../../client/model/Client&#x27;;
+import { Pageable } from &#x27;../../core/Model/Page/Pageable&#x27;;
+import { DialogConfirmationComponent } from &#x27;../../core/dialog-confirmation/dialog-confirmation.component&#x27;;
+
+@Component({
+    selector: &#x27;app-loan-edit&#x27;,
+    templateUrl: &#x27;./loan-edit.component.html&#x27;,
+    styleUrl: &#x27;./loan-edit.component.scss&#x27;
+})
+/**
+ * Dialog component used to create or edit loans.
+ */
+export class LoanEditComponent implements OnInit {
+
+    loan!: Loan;
+    games: Game[] &#x3D; [];        // (1)
+    clients: Client[] &#x3D; [];    // (2)
+
+    constructor(
+        private loanService: LoanService,
+        private gameService: GameService,      // (3)
+        private clientService: ClientService,  // (4)
+        private dialog: MatDialog,
+        public dialogRef: MatDialogRef&lt;LoanEditComponent&gt;,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) {}
+
+    /**
+     * Initializes model and loads dropdown data.
+     */
+    ngOnInit(): void {
+        // Carga el loan si es edición, o crea uno vacío si es alta
+        this.loan &#x3D; this.data.loan ? Object.assign({}, this.data.loan) : new Loan();
+        if (this.loan.id &#x3D;&#x3D; null) {
+            this.loadNextIdForCreate();
+        }
+
+        // Carga las listas para los combos
+        this.gameService.getGames().subscribe(games &#x3D;&gt; this.games &#x3D; games);      // (5)
+        const pageable: Pageable &#x3D; {
+            pageNumber: 0,
+            pageSize: 100,
+            sort: [{ property: &#x27;id&#x27;, direction: &#x27;ASC&#x27; }]
+        };
+        this.clientService.getClients(pageable).subscribe(clients &#x3D;&gt; this.clients &#x3D; clients.content); // (6)
+    }
+
+    /**
+     * Compares select options by id to preserve selected values.
+     * @param o1 First option.
+     * @param o2 Second option.
+     * @returns True when both options represent the same entity.
+     */
+    compareById(o1: any, o2: any): boolean {
+        return o1?.id &#x3D;&#x3D;&#x3D; o2?.id;   // (7)
+    }
+
+    /**
+     * Persists loan and shows backend error message in dialog when needed.
+     */
+    onSave() {
+        this.loanService.saveLoan(this.loan).subscribe({
+            next: () &#x3D;&gt; this.dialogRef.close(true),
+            error: (err) &#x3D;&gt; {
+                this.dialog.open(DialogConfirmationComponent, {
+                    data: {
+                        title: &#x27;Error&#x27;,
+                        description: this.getBackendErrorMessage(err)
+                    }
+                });
+            }
+        });
+    }
+
+    /**
+     * Closes dialog without saving changes.
+     */
+    onClose() {
+        this.dialogRef.close(false);
+    }
+
+    /**
+     * Extracts a user-friendly error message from backend responses.
+     * @param err HTTP error response object.
+     * @returns Message text to display in UI.
+     */
+    private getBackendErrorMessage(err: any): string {
+        if (typeof err?.error &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; err.error.trim().length &gt; 0) {
+            return err.error;
+        }
+        if (typeof err?.error?.message &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; err.error.message.trim().length &gt; 0) {
+            return err.error.message;
+        }
+        if (typeof err?.message &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; err.message.trim().length &gt; 0) {
+            return err.message;
+        }
+        return &#x27;Se ha producido un error inesperado al guardar el préstamo.&#x27;;
+    }
+
+    /**
+     * Preloads next id to display a non-editable identifier in create mode.
+     */
+    private loadNextIdForCreate(): void {
+        const pageable: Pageable &#x3D; {
+            pageNumber: 0,
+            pageSize: 1,
+            sort: [{ property: &#x27;id&#x27;, direction: &#x27;DESC&#x27; }]
+        };
+
+        this.loanService.getLoans(pageable).subscribe({
+            next: (page) &#x3D;&gt; {
+                const lastId &#x3D; page.content?.[0]?.id ?? 0;
+                this.loan.id &#x3D; lastId + 1;
+            },
+            error: () &#x3D;&gt; {
+                // Fallback if list cannot be loaded
+                this.loan.id &#x3D; 1;
+            }
+        });
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h2 mat-dialog-title&gt;{{ loan.id !&#x3D; null ? &#x27;Editar&#x27; : &#x27;Crear&#x27; }} préstamo&lt;/h2&gt;
+
+&lt;h2 mat-dialog-title&gt;Préstamo&lt;/h2&gt;
+
+&lt;mat-dialog-content&gt;
+
+  &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+    &lt;mat-label&gt;Identificador&lt;/mat-label&gt;
+    &lt;input matInput [(ngModel)]&#x3D;&quot;loan.id&quot; readonly&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+    &lt;mat-label&gt;Nombre cliente...&lt;/mat-label&gt;
+    &lt;mat-select [(ngModel)]&#x3D;&quot;loan.client&quot; [compareWith]&#x3D;&quot;compareById&quot;&gt;
+      &lt;mat-option *ngFor&#x3D;&quot;let client of clients&quot; [value]&#x3D;&quot;client&quot;&gt;
+        {{ client.name }}
+      &lt;/mat-option&gt;
+    &lt;/mat-select&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;full-width&quot;&gt;
+    &lt;mat-label&gt;Nombre juego...&lt;/mat-label&gt;
+    &lt;mat-select [(ngModel)]&#x3D;&quot;loan.game&quot; [compareWith]&#x3D;&quot;compareById&quot;&gt;
+      &lt;mat-option *ngFor&#x3D;&quot;let game of games&quot; [value]&#x3D;&quot;game&quot;&gt;
+        {{ game.title }}
+      &lt;/mat-option&gt;
+    &lt;/mat-select&gt;
+  &lt;/mat-form-field&gt;
+
+  &lt;p class&#x3D;&quot;dates-label&quot;&gt;Fechas de préstamo&lt;/p&gt;
+
+  &lt;div class&#x3D;&quot;dates-row&quot;&gt;
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;half-width&quot;&gt;
+      &lt;mat-label&gt;Fecha inicio&lt;/mat-label&gt;
+      &lt;input matInput [matDatepicker]&#x3D;&quot;pickerStart&quot; [(ngModel)]&#x3D;&quot;loan.loanDate&quot;&gt;
+      &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;pickerStart&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+      &lt;mat-datepicker #pickerStart&gt;&lt;/mat-datepicker&gt;
+    &lt;/mat-form-field&gt;
+
+    &lt;mat-form-field appearance&#x3D;&quot;outline&quot; class&#x3D;&quot;half-width&quot;&gt;
+      &lt;mat-label&gt;Fecha fin&lt;/mat-label&gt;
+      &lt;input matInput [matDatepicker]&#x3D;&quot;pickerEnd&quot; [(ngModel)]&#x3D;&quot;loan.returnDate&quot;&gt;
+      &lt;mat-datepicker-toggle matSuffix [for]&#x3D;&quot;pickerEnd&quot;&gt;&lt;/mat-datepicker-toggle&gt;
+      &lt;mat-datepicker #pickerEnd&gt;&lt;/mat-datepicker&gt;
+    &lt;/mat-form-field&gt;
+  &lt;/div&gt;
+
+&lt;/mat-dialog-content&gt;
+
+&lt;mat-dialog-actions align&#x3D;&quot;end&quot;&gt;
+  &lt;button mat-stroked-button (click)&#x3D;&quot;onClose()&quot;&gt;Cancelar&lt;/button&gt;
+  &lt;button mat-flat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;onSave()&quot;&gt;Guardar&lt;/button&gt;
+&lt;/mat-dialog-actions&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h2 mat-dialog-title>{{ loan.id != null ? \'Editar\' : \'Crear\' }} préstamo</h2><h2 mat-dialog-title>Préstamo</h2><mat-dialog-content>  <mat-form-field appearance="outline" class="full-width">    <mat-label>Identificador</mat-label>    <input matInput [(ngModel)]="loan.id" readonly>  </mat-form-field>  <mat-form-field appearance="outline" class="full-width">    <mat-label>Nombre cliente...</mat-label>    <mat-select [(ngModel)]="loan.client" [compareWith]="compareById">      <mat-option *ngFor="let client of clients" [value]="client">        {{ client.name }}      </mat-option>    </mat-select>  </mat-form-field>  <mat-form-field appearance="outline" class="full-width">    <mat-label>Nombre juego...</mat-label>    <mat-select [(ngModel)]="loan.game" [compareWith]="compareById">      <mat-option *ngFor="let game of games" [value]="game">        {{ game.title }}      </mat-option>    </mat-select>  </mat-form-field>  <p class="dates-label">Fechas de préstamo</p>  <div class="dates-row">    <mat-form-field appearance="outline" class="half-width">      <mat-label>Fecha inicio</mat-label>      <input matInput [matDatepicker]="pickerStart" [(ngModel)]="loan.loanDate">      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>      <mat-datepicker #pickerStart></mat-datepicker>    </mat-form-field>    <mat-form-field appearance="outline" class="half-width">      <mat-label>Fecha fin</mat-label>      <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="loan.returnDate">      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>      <mat-datepicker #pickerEnd></mat-datepicker>    </mat-form-field>  </div></mat-dialog-content><mat-dialog-actions align="end">  <button mat-stroked-button (click)="onClose()">Cancelar</button>  <button mat-flat-button color="primary" (click)="onSave()">Guardar</button></mat-dialog-actions></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthorEditComponent', 'selector': 'app-author-edit'},{'name': 'AuthorListComponent', 'selector': 'app-author-list'},{'name': 'CategoryEditComponent', 'selector': 'app-category-edit'},{'name': 'CategoryListComponent', 'selector': 'app-category-list'},{'name': 'ClientComponent', 'selector': 'app-client'},{'name': 'ClientEditComponent', 'selector': 'app-client-edit'},{'name': 'ClientListComponent', 'selector': 'app-client-list'},{'name': 'DialogConfirmationComponent', 'selector': 'app-dialog-confirmation'},{'name': 'GameEditComponent', 'selector': 'app-game-edit'},{'name': 'GameItemComponent', 'selector': 'app-game-item'},{'name': 'GameListComponent', 'selector': 'app-game-list'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoanEditComponent', 'selector': 'app-loan-edit'},{'name': 'LoanListComponent', 'selector': 'app-loan-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'LoanEditComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoanEditComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

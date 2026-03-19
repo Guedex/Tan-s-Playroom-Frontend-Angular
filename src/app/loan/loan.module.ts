@@ -2,7 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoanListComponent } from './loan-list/loan-list.component';
 import { LoanEditComponent } from './loan-edit/loan-edit.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -11,7 +21,28 @@ import { LoanEditComponent } from './loan-edit/loan-edit.component';
     LoanEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTableModule,
+    MatIconModule, 
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {},
+    },
   ]
 })
+/**
+ * Feature module that encapsulates loan management screens.
+ */
 export class LoanModule { }
