@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import {GameModule} from './game/game.module';
 import { ClientModule } from './client/client.module';
+import { LoanModule } from './loan/loan.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ClientModule } from './client/client.module';
     HttpClientModule,
     GameModule,
     ClientModule,
+    LoanModule,
   ],
   providers: [
     provideClientHydration(),
