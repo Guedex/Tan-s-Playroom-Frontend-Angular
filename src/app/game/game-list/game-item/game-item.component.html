@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card>
         <div class="photo">
-            <img [src]="'/foto' + game.id + '.png'" [attr.alt]="('game.photo_alt_prefix' | translate) + game.title">
+            <img [src]="coverImageSrc" [attr.alt]="('game.photo_alt_prefix' | translate) + game.title">
         </div>
         <div class="detail">
             <div class="title">{{game.title}}</div>

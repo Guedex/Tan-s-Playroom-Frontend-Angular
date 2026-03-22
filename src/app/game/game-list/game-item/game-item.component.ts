@@ -11,6 +11,9 @@ import { Game } from '../../model/Game';
  */
 export class GameItemComponent implements OnInit {
 
+    /** Matches `public/foto{n}.png` files shipped with the app; newer games use `foto.png`. */
+    private static readonly maxCoverAssetId = 8;
+
     /** Game entity displayed by the card. */
     @Input() game!: Game;
 
@@ -20,6 +23,15 @@ export class GameItemComponent implements OnInit {
      * Angular lifecycle hook reserved for future logic.
      */
     ngOnInit(): void {
+    }
+
+    /** Cover URL: per-id image only when an asset exists; otherwise the shared placeholder. */
+    get coverImageSrc(): string {
+        const id = this.game?.id;
+        if (id != null && id >= 1 && id <= GameItemComponent.maxCoverAssetId) {
+            return `/foto${id}.png`;
+        }
+        return '/foto.png';
     }
 
 }
