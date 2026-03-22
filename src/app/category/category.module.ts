@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { I18nSharedModule } from '../shared/i18n-shared.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatDialogModule,
     HttpClientModule,
+    I18nSharedModule,
   ],
   providers: [
     {

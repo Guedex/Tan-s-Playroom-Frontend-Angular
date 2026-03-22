@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { I18nSharedModule } from '../shared/i18n-shared.module';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ imports: [
     MatOptionModule,
     MatSelectModule,
     MatCardModule,
+    I18nSharedModule,
 ]
 })
 /**

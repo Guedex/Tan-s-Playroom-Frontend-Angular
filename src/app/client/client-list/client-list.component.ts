@@ -8,6 +8,7 @@ import { ClientEditComponent } from '../client-edit/client-edit.component';
 import { Pageable } from '../../core/Model/Page/Pageable';
 import { PageEvent } from '@angular/material/paginator';
 import { DialogConfirmationComponent } from "../../core/dialog-confirmation/dialog-confirmation.component";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-client-list',
@@ -26,9 +27,11 @@ export class ClientListComponent {
   dataSource = new MatTableDataSource<Client>();
   displayedColumns: string[] = ['id', 'name', 'action'];
 
-  constructor( private clientService: ClientService, public dialog: MatDialog) { 
-    
-  }
+  constructor(
+    private clientService: ClientService,
+    public dialog: MatDialog,
+    private translate: TranslateService
+  ) {}
 
   /**
    * Loads first page when component starts.
@@ -98,7 +101,10 @@ editClient(client: Client) {
    */
   deleteClient(client: Client) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: { title: "Eliminar cliente", description: "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?" }
+      data: {
+        title: this.translate.instant('client.delete_title'),
+        description: this.translate.instant('client.delete_message')
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

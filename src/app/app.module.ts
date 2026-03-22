@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {GameModule} from './game/game.module';
 import { ClientModule } from './client/client.module';
 import { LoanModule } from './loan/loan.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 @NgModule({
   declarations: [
@@ -43,13 +46,24 @@ import { LoanModule } from './loan/loan.module';
     GameModule,
     ClientModule,
     LoanModule,
+    TranslateModule.forRoot({
+      fallbackLang: 'es',
+      lang: 'es'
+    }),
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    /** HttpLoader devuelve Provider[]; debe expandirse aquí (no pasar como `loader` de forRoot). */
+    ...provideTranslateHttpLoader({
+      prefix: '/i18n/',
+      suffix: '.json'
+    }),
   ],
   bootstrap: [AppComponent]
 })
+
+
 /**
  * Main application module that wires feature modules and shared dependencies.
  */

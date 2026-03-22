@@ -9,6 +9,7 @@ import { Game } from '../../game/model/Game';
 import { Client } from '../../client/model/Client';
 import { Pageable } from '../../core/Model/Page/Pageable';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-loan-edit',
@@ -30,7 +31,8 @@ export class LoanEditComponent implements OnInit {
         private clientService: ClientService,
         private dialog: MatDialog,
         public dialogRef: MatDialogRef<LoanEditComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private translate: TranslateService
     ) {}
 
     /**
@@ -70,7 +72,7 @@ export class LoanEditComponent implements OnInit {
             error: (err) => {
                 this.dialog.open(DialogConfirmationComponent, {
                     data: {
-                        title: 'Error',
+                        title: this.translate.instant('common.error'),
                         description: this.getBackendErrorMessage(err)
                     }
                 });
@@ -100,7 +102,7 @@ export class LoanEditComponent implements OnInit {
         if (typeof err?.message === 'string' && err.message.trim().length > 0) {
             return err.message;
         }
-        return 'Se ha producido un error inesperado al guardar el préstamo.';
+        return this.translate.instant('loan.save_error_unexpected');
     }
 
     /**

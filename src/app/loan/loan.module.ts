@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { LoanDdMmYyyyDateAdapter } from './loan-dd-mm-yyyy-date-adapter';
+import { I18nSharedModule } from '../shared/i18n-shared.module';
 
 /** Display strings for calendar chrome (month/year header, a11y). */
 const LOAN_DATE_FORMATS = {
@@ -47,6 +48,7 @@ const LOAN_DATE_FORMATS = {
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    I18nSharedModule,
   ],
   providers: [
     {

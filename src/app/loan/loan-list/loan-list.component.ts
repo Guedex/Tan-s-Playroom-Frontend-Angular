@@ -11,6 +11,7 @@ import { Client } from '../../client/model/Client';
 import { Game } from '../../game/model/Game';
 import { ClientService } from '../../client/client.service';
 import { GameService } from '../../game/game.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -37,7 +38,13 @@ filterDate: Date | null = null;
 dataSource = new MatTableDataSource<Loan>();
 displayedColumns: string[] = ['id', 'client', 'game', 'loanDate', 'returnDate', 'action'];
 
-constructor(private loanService: LoanService, public dialog: MatDialog, private clientService: ClientService, private gameService: GameService) {}
+constructor(
+    private loanService: LoanService,
+    public dialog: MatDialog,
+    private clientService: ClientService,
+    private gameService: GameService,
+    private translate: TranslateService
+) {}
 
 /**
  * Loads first page on component init.
@@ -130,7 +137,10 @@ loadPage(event?: PageEvent) {
    */
   deleteLoan(element: any): void {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: { title: "Eliminar préstamo", description: "Atención si borra el préstamo se perderán sus datos.<br> ¿Desea eliminar el préstamo?" }
+      data: {
+        title: this.translate.instant('loan.delete_title'),
+        description: this.translate.instant('loan.delete_message')
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

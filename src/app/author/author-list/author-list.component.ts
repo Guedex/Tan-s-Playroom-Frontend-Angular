@@ -7,6 +7,7 @@ import { Pageable } from "../../core/Model/Page/Pageable";
 import { AuthorEditComponent } from '../author-edit/author-edit.component';
 import { AuthorService } from '../author.service';
 import { Author } from '../model/Author';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 selector: 'app-author-list',
@@ -28,7 +29,8 @@ export class AuthorListComponent implements OnInit {
     constructor(
         private authorService: AuthorService,
         public dialog: MatDialog,
-    ) { }
+        private translate: TranslateService
+    ) {}
 
     /**
      * Loads first page on component init.
@@ -99,7 +101,10 @@ export class AuthorListComponent implements OnInit {
      */
     deleteAuthor(author: Author) {    
         const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-            data: { title: "Eliminar autor", description: "Atención si borra el autor se perderán sus datos.<br> ¿Desea eliminar el autor?" }
+            data: {
+                title: this.translate.instant('author.delete_title'),
+                description: this.translate.instant('author.delete_message')
+            }
         });
 
         dialogRef.afterClosed().subscribe(result => {

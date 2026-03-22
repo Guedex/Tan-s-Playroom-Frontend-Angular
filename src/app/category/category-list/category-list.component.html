@@ -1,14 +1,14 @@
 <div class="container">
-    <h1>Listado de Categorías</h1>
+    <h1>{{ 'common.list_title_categories' | translate }}</h1>
 
     <mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Identificador </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{ 'common.identifier' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Nombre categoría  </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{ 'common.column_category_name' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
         </ng-container>
 
@@ -29,6 +29,6 @@
     </mat-table>
 
     <div class="buttons">
-        <button mat-flat-button color="primary" (click)="createCategory()">Nueva categoría</button> 
+        <button mat-flat-button color="primary" (click)="createCategory()">{{ 'category.new_category' | translate }}</button> 
     </div>    
 </div>

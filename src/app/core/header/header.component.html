@@ -2,31 +2,55 @@
     <mat-toolbar-row>
         <div class="header_container">
             <div class="header_title">              
-                <mat-icon>storefront</mat-icon> Ludoteca Tan
+                <mat-icon>storefront</mat-icon> {{ 'nav.app_name' | translate }}
             </div>
 
             <div class="header_separator"> | </div>
 
             <div class="header_menu">
                 <div class="header_button">
-                    <a routerLink="/games" routerLinkActive="active">Catálogo</a>
+                    <a routerLink="/games" routerLinkActive="active">{{ 'nav.catalog' | translate }}</a>
                 </div>
                 <div class="header_button">
-                    <a routerLink="/categories" routerLinkActive="active">Categorías</a>
+                    <a routerLink="/categories" routerLinkActive="active">{{ 'nav.categories' | translate }}</a>
                 </div>
                 <div class="header_button">
-                    <a routerLink="/authors" routerLinkActive="active">Autores</a>
+                    <a routerLink="/authors" routerLinkActive="active">{{ 'nav.authors' | translate }}</a>
                 </div>
                 <div class="header_button">
-                    <a routerLink="/clients" routerLinkActive="active">Clientes</a>
+                    <a routerLink="/clients" routerLinkActive="active">{{ 'nav.clients' | translate }}</a>
                 </div>
                 <div class="header_button">
-                    <a routerLink="/loans" routerLinkActive="active">Préstamos</a>
+                    <a routerLink="/loans" routerLinkActive="active">{{ 'nav.loans' | translate }}</a>
                 </div>
             </div>
 
             <div class="header_login">
-                <mat-icon>account_circle</mat-icon> Sign in
+                <div class="lang-switch">
+                    <button
+                        type="button"
+                        mat-icon-button
+                        [matMenuTriggerFor]="langMenu"
+                        [attr.aria-label]="'nav.language' | translate"
+                        [attr.aria-haspopup]="true">
+                        <span class="fi" [ngClass]="currentFlagClass" aria-hidden="true"></span>
+                        <mat-icon class="lang-chevron" aria-hidden="true">arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #langMenu="matMenu" panelClass="lang-menu-panel">
+                        <button
+                            mat-menu-item
+                            type="button"
+                            *ngFor="let opt of otherLangs"
+                            (click)="changeLang(opt.code)">
+                            <span class="lang-menu-item-content">
+                                <span class="fi" [ngClass]="opt.flagClass" aria-hidden="true"></span>
+                                <span>{{ opt.labelKey | translate }}</span>
+                            </span>
+                        </button>
+                    </mat-menu>
+                </div>
+                  
+                <mat-icon>account_circle</mat-icon> {{ 'nav.sign_in' | translate }}
             </div>
         </div>
     </mat-toolbar-row>

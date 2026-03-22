@@ -6,6 +6,7 @@ import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dial
 
 import { Category } from '../model/Category';
 import { CategoryService } from '../category.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-list',
@@ -20,9 +21,11 @@ export class CategoryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Category>();
   displayedColumns: string[] = ['id', 'name', 'action'];
 
-  constructor(private categoryService: CategoryService, public dialog: MatDialog) { 
-    
-  }
+  constructor(
+    private categoryService: CategoryService,
+    public dialog: MatDialog,
+    private translate: TranslateService
+  ) {}
 
   /**
    * Opens category creation dialog.
@@ -57,7 +60,10 @@ export class CategoryListComponent implements OnInit {
    */
   deleteCategory(category: Category) {    
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: { title: "Eliminar categoría", description: "Atención si borra la categoría se perderán sus datos.<br> ¿Desea eliminar la categoría?" }
+      data: {
+        title: this.translate.instant('category.delete_title'),
+        description: this.translate.instant('category.delete_message')
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

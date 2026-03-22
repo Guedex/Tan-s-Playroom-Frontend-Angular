@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { I18nSharedModule } from '../shared/i18n-shared.module';
 
 
 @NgModule({
@@ -29,6 +29,7 @@ imports: [
     FormsModule,
     ReactiveFormsModule,
     MatPaginatorModule,
+    I18nSharedModule,
 ],
 providers: [
     {

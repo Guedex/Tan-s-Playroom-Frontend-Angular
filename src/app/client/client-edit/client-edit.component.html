@@ -1,10 +1,10 @@
 <div class="container">
-    <h2 mat-dialog-title>{{ data.client ? 'Editar cliente' : 'Nuevo cliente' }}</h2>
+    <h2 mat-dialog-title>{{ (data.client ? 'client.dialog_edit_title' : 'client.dialog_new_title') | translate }}</h2>
   
     <mat-dialog-content>
       <form>
         <mat-form-field>
-          <mat-label>Nombre</mat-label>
+          <mat-label>{{ 'common.name' | translate }}</mat-label>
           <input matInput [(ngModel)]="client.name" name="name" required />
         </mat-form-field>
   
@@ -16,8 +16,8 @@
     </mat-dialog-content>
   
     <mat-dialog-actions class="buttons">
-      <button mat-button (click)="onClose()">Cancelar</button>
-      <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
+      <button mat-button (click)="onClose()">{{ 'common.cancel' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="onSave()">{{ 'common.save' | translate }}</button>
     </mat-dialog-actions>
   </div>
   

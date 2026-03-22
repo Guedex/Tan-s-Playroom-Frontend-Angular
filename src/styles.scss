@@ -1,5 +1,9 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* mat-menu se renderiza en un overlay fuera del header: los estilos del componente no aplican */
+.lang-menu-panel .lang-menu-item-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

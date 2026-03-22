@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { Client } from '../model/Client';
 import { ClientService } from '../client.service';
+import { TranslateService } from '@ngx-translate/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -20,8 +21,9 @@ export class ClientEditComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<ClientEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private clientService: ClientService
-  ) { }
+    private clientService: ClientService,
+    private translate: TranslateService
+  ) {}
 
   /**
    * Initializes model from injected dialog data.
@@ -45,9 +47,9 @@ export class ClientEditComponent implements OnInit{
       error: err => {
         
         if (err.status === 500 || err.status === 400) {
-          this.errorMessage = 'Ya existe un cliente con ese nombre.';
+          this.errorMessage = this.translate.instant('client.duplicate_name_error');
         } else {
-          this.errorMessage = 'Error inesperado. Inténtalo de nuevo.';
+          this.errorMessage = this.translate.instant('client.unexpected_error');
         }
       }
     });

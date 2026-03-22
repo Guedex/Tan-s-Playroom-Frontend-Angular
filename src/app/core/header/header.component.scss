@@ -1,6 +1,11 @@
 .mat-toolbar {
-  background-color: blue;
+  background-color: #4051b5;
   color: white;
+}
+
+.fi {
+  font-size: 1.5rem;
+  border-radius: 3px;
 }
 
 .header_container {
@@ -21,6 +26,7 @@
         flex-grow: 4;
         display: flex;
         flex-direction: row;
+        font-family: 'Roboto', sans-serif;
 
         .header_button {
             margin-left: 1em;
@@ -28,7 +34,7 @@
             font-size: 1rem;
 
             a {
-              font-weight: lighter;
+              font-weight: bold;
               text-decoration: none;
               cursor: pointer;
               color: white;
@@ -39,8 +45,7 @@
             }
 
             a.active {
-              font-weight: normal;
-              text-decoration: underline;
+              font-weight: bolder;
               color: lightyellow;
             }
 
@@ -50,6 +55,32 @@
     .header_login {
       font-size: 1rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding-right: 1rem;
+
+      .lang-switch {
+        display: inline-flex;
+        margin-right: 1rem;
+        align-items: center;
+
+        .mat-mdc-icon-button {
+          width: auto;
+          min-width: 3rem;
+          padding: 0 0.25rem;
+        }
+
+        .lang-chevron {
+          font-size: 1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-left: -0.125rem;
+          opacity: 0.9;
+        }
+      }
+
       .mat-icon {
           vertical-align: sub;
       }

@@ -1,15 +1,15 @@
 <div class="container">
     <mat-card>
         <div class="photo">
-            <img [src]="'/foto' + game.id + '.png'" [alt]="'Foto de ' + game.title">
+            <img [src]="'/foto' + game.id + '.png'" [attr.alt]="('game.photo_alt_prefix' | translate) + game.title">
         </div>
         <div class="detail">
             <div class="title">{{game.title}}</div>
             <div class="properties">
-                <div><i>Edad recomendada: </i>+{{game.age}}</div>
-                <div><i>Categoría: </i>{{game.category.name}}</div>
-                <div><i>Autor: </i>{{game.author.name}}</div>
-                <div><i>Nacionalidad: </i>{{game.author.nationality}}</div>
+                <div><i>{{ 'game.card_age' | translate }}</i>+{{game.age}}</div>
+                <div><i>{{ 'game.card_category' | translate }}</i>{{game.category.name}}</div>
+                <div><i>{{ 'game.card_author' | translate }}</i>{{game.author.name}}</div>
+                <div><i>{{ 'game.card_nationality' | translate }}</i>{{game.author.nationality}}</div>
             </div>
         </div>
     </mat-card>

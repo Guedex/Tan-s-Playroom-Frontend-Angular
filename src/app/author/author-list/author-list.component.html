@@ -1,19 +1,19 @@
 <div class="container">
-    <h1>Listado de Autores</h1>
+    <h1>{{ 'author.list_title' | translate }}</h1>
 
     <mat-table [dataSource]="dataSource"> 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Identificador </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{ 'common.identifier' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Nombre autor  </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{ 'author.column_author_name' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nationality">
-            <mat-header-cell *matHeaderCellDef> Nacionalidad  </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{ 'common.nationality' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.nationality}} </mat-cell>
         </ng-container>
 
@@ -36,6 +36,6 @@
     <mat-paginator (page)="loadPage($event)" [pageSizeOptions]="[5, 10, 20]" [pageIndex]="pageNumber" [pageSize]="pageSize" [length]="totalElements" showFirstLastButtons></mat-paginator>
 
     <div class="buttons">
-        <button mat-flat-button color="primary" (click)="createAuthor()">Nuevo autor</button> 
+        <button mat-flat-button color="primary" (click)="createAuthor()">{{ 'author.new_author' | translate }}</button> 
     </div>   
 </div>

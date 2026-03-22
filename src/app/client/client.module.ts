@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { I18nSharedModule } from '../shared/i18n-shared.module';
 
 
 
@@ -33,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     HttpClientModule, 
     MatPaginatorModule,
-  
+    I18nSharedModule,
   ],
   providers: [
     {

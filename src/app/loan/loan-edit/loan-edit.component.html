@@ -1,16 +1,14 @@
-<h2 mat-dialog-title>{{ loan.id != null ? 'Editar' : 'Crear' }} préstamo</h2>
-
-<h2 mat-dialog-title>Préstamo</h2>
+<h2 mat-dialog-title>{{ (loan.id != null ? 'loan.dialog_edit_loan' : 'loan.dialog_create_loan') | translate }}</h2>
 
 <mat-dialog-content>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Identificador</mat-label>
+    <mat-label>{{ 'common.identifier' | translate }}</mat-label>
     <input matInput [(ngModel)]="loan.id" readonly>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nombre cliente...</mat-label>
+    <mat-label>{{ 'loan.client_select_label' | translate }}</mat-label>
     <mat-select [(ngModel)]="loan.client" [compareWith]="compareById">
       <mat-option *ngFor="let client of clients" [value]="client">
         {{ client.name }}
@@ -19,7 +17,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nombre juego...</mat-label>
+    <mat-label>{{ 'loan.game_select_label' | translate }}</mat-label>
     <mat-select [(ngModel)]="loan.game" [compareWith]="compareById">
       <mat-option *ngFor="let game of games" [value]="game">
         {{ game.title }}
@@ -27,18 +25,18 @@
     </mat-select>
   </mat-form-field>
 
-  <p class="dates-label">Fechas de préstamo</p>
+  <p class="dates-label">{{ 'loan.dates_section_title' | translate }}</p>
 
   <div class="dates-row">
     <mat-form-field appearance="outline" class="half-width">
-      <mat-label>Fecha inicio</mat-label>
+      <mat-label>{{ 'loan.date_start' | translate }}</mat-label>
       <input matInput [matDatepicker]="pickerStart" [(ngModel)]="loan.loanDate">
       <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
       <mat-datepicker #pickerStart></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="half-width">
-      <mat-label>Fecha fin</mat-label>
+      <mat-label>{{ 'loan.date_end' | translate }}</mat-label>
       <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="loan.returnDate">
       <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
       <mat-datepicker #pickerEnd></mat-datepicker>
@@ -48,6 +46,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-stroked-button (click)="onClose()">Cancelar</button>
-  <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+  <button mat-stroked-button (click)="onClose()">{{ 'common.cancel' | translate }}</button>
+  <button mat-flat-button color="primary" (click)="onSave()">{{ 'common.save' | translate }}</button>
 </mat-dialog-actions>
