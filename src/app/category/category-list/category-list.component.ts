@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
@@ -16,7 +17,9 @@ import { TranslateService } from '@ngx-translate/core';
 /**
  * List screen for category search, creation, edition and deletion.
  */
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   dataSource = new MatTableDataSource<Category>();
   displayedColumns: string[] = ['id', 'name', 'action'];
@@ -35,10 +38,10 @@ export class CategoryListComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
-    });    
-  } 
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadCategories();
+    });
+  }
 
    /**
     * Opens category edition dialog.
@@ -49,8 +52,8 @@ export class CategoryListComponent implements OnInit {
       data: { category: category }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadCategories();
     });
   }
 
@@ -68,9 +71,9 @@ export class CategoryListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.categoryService.deleteCategory(category.id).subscribe(result => {
-          this.ngOnInit();
-        }); 
+        this.categoryService.deleteCategory(category.id).subscribe(() => {
+          this.loadCategories();
+        });
       }
     });
   }  
@@ -79,9 +82,23 @@ export class CategoryListComponent implements OnInit {
    * Loads category table data.
    */
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(
-      categories => this.dataSource.data = categories
-    )
+    this.loadCategories();
+  }
+
+  /**
+   * Binds Material paginator to the table data source (client-side paging).
+   */
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+   * Loads all categories from the API; the paginator slices rows locally.
+   */
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.dataSource.data = categories;
+    });
   }
 
 }

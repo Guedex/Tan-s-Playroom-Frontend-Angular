@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +30,7 @@ import { I18nSharedModule } from '../shared/i18n-shared.module';
     MatDialogModule,
     HttpClientModule,
     I18nSharedModule,
+    MatPaginatorModule,
   ],
   providers: [
     {
