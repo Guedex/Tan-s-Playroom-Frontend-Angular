@@ -9,39 +9,66 @@
         }
     }
 
+    /** Icon buttons: cuadrado con esquinas redondeadas (la capa de hover sigue esa forma). */
+    mat-table .loan-list-actions button.mat-mdc-icon-button {
+        $side: 3rem;
+        width: $side;
+        min-width: $side;
+        height: $side;
+        min-height: $side;
+        padding: 0;
+        border-radius: 0.1rem;
+
+        &:hover {
+            --mat-icon-button-hover-state-layer-opacity: 0.1;
+        }
+
+        &:hover .mat-mdc-button-persistent-ripple::before {
+            opacity: 0;
+        }
+    }
+
     .filters {
         display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0 1.25rem;
 
         mat-form-field {
             width: 18.75rem;
-            margin-right: 1.25rem;
+            margin-right: 0;
         }
 
         .buttons {
-            flex: auto;
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: flex-end;
             align-self: center;
+            min-width: 12rem;
 
-            button {
-                margin-left: 0.9375rem;
+            .clear-filters-btn {
+                width: auto;
+                min-width: unset;
             }
         }
     }
 
-    .game-list { 
+    .game-list {
         margin-top: 1.25rem;
         margin-bottom: 1.25rem;
 
         display: flex;
         flex-flow: wrap;
-        overflow: auto;  
+        overflow: auto;
     }
 
-    .buttons {
+    /** Bottom actions (Nuevo préstamo): direct child .buttons, not .filters .buttons */
+    > .buttons {
         margin-top: 1rem;
         text-align: right;
-    }
-}
 
-button {
-    width: 10rem;
+        button {
+            width: 12rem;
+        }
+    }
 }

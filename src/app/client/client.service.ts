@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Pageable } from '../core/Model/Page/Pageable';
 import { Client } from './model/Client';
 import { ClientPage } from './model/ClientPage';
@@ -37,9 +37,9 @@ export class ClientService {
     saveClient(client: Client): Observable<void> {
         const url =
           client.id != null
-            ? `${clientApiURL}/${client.id}`   // actualizar
-            : clientApiURL;                    // crear
-      
+            ? `${clientApiURL}/${client.id}`
+            : clientApiURL;
+
         return this.http.put<void>(url, client);
       }
 
@@ -53,10 +53,16 @@ export class ClientService {
     }
 
     /**
-     * Returns all clients without pagination.
+     * Returns all clients by requesting a single large page from the paginated POST endpoint.
+     * (GET /client is not exposed on the backend; list queries use POST with pageable.)
      * @returns Observable list of clients.
      */
     getAllClients(): Observable<Client[]> {
-        return this.http.get<Client[]>(clientApiURL);
+        const pageable: Pageable = {
+            pageNumber: 0,
+            pageSize: 10_000,
+            sort: [{ property: 'id', direction: 'ASC' }]
+        };
+        return this.getClients(pageable).pipe(map((page) => page.content));
     }
 }

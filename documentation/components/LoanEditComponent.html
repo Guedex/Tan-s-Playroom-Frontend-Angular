@@ -388,8 +388,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -481,8 +481,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -558,8 +558,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -636,8 +636,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -675,8 +675,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/loan/loan-edit/loan-edit.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -881,13 +881,13 @@ import { DialogConfirmationComponent } from &#x27;../../core/dialog-confirmation
 export class LoanEditComponent implements OnInit {
 
     loan!: Loan;
-    games: Game[] &#x3D; [];        // (1)
-    clients: Client[] &#x3D; [];    // (2)
+    games: Game[] &#x3D; [];
+    clients: Client[] &#x3D; [];
 
     constructor(
         private loanService: LoanService,
-        private gameService: GameService,      // (3)
-        private clientService: ClientService,  // (4)
+        private gameService: GameService,
+        private clientService: ClientService,
         private dialog: MatDialog,
         public dialogRef: MatDialogRef&lt;LoanEditComponent&gt;,
         @Inject(MAT_DIALOG_DATA) public data: any
@@ -897,20 +897,18 @@ export class LoanEditComponent implements OnInit {
      * Initializes model and loads dropdown data.
      */
     ngOnInit(): void {
-        // Carga el loan si es edición, o crea uno vacío si es alta
         this.loan &#x3D; this.data.loan ? Object.assign({}, this.data.loan) : new Loan();
         if (this.loan.id &#x3D;&#x3D; null) {
             this.loadNextIdForCreate();
         }
 
-        // Carga las listas para los combos
-        this.gameService.getGames().subscribe(games &#x3D;&gt; this.games &#x3D; games);      // (5)
+        this.gameService.getGames().subscribe(games &#x3D;&gt; this.games &#x3D; games);
         const pageable: Pageable &#x3D; {
             pageNumber: 0,
             pageSize: 100,
             sort: [{ property: &#x27;id&#x27;, direction: &#x27;ASC&#x27; }]
         };
-        this.clientService.getClients(pageable).subscribe(clients &#x3D;&gt; this.clients &#x3D; clients.content); // (6)
+        this.clientService.getClients(pageable).subscribe(clients &#x3D;&gt; this.clients &#x3D; clients.content);
     }
 
     /**
@@ -920,7 +918,7 @@ export class LoanEditComponent implements OnInit {
      * @returns True when both options represent the same entity.
      */
     compareById(o1: any, o2: any): boolean {
-        return o1?.id &#x3D;&#x3D;&#x3D; o2?.id;   // (7)
+        return o1?.id &#x3D;&#x3D;&#x3D; o2?.id;
     }
 
     /**
@@ -981,7 +979,6 @@ export class LoanEditComponent implements OnInit {
                 this.loan.id &#x3D; lastId + 1;
             },
             error: () &#x3D;&gt; {
-                // Fallback if list cannot be loaded
                 this.loan.id &#x3D; 1;
             }
         });

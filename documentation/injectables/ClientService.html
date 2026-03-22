@@ -526,9 +526,9 @@ export class ClientService {
     saveClient(client: Client): Observable&lt;void&gt; {
         const url &#x3D;
           client.id !&#x3D; null
-            ? &#x60;${clientApiURL}/${client.id}&#x60;   // actualizar
-            : clientApiURL;                    // crear
-      
+            ? &#x60;${clientApiURL}/${client.id}&#x60;
+            : clientApiURL;
+
         return this.http.put&lt;void&gt;(url, client);
       }
 

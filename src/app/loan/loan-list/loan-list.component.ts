@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoanService } from '../loan.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,11 @@ import { Pageable } from '../../core/Model/Page/Pageable';
 import { PageEvent } from '@angular/material/paginator';
 import { Loan } from '../model/Loan';
 import { LoanEditComponent } from '../loan-edit/loan-edit.component';
+import { Client } from '../../client/model/Client';
+import { Game } from '../../game/model/Game';
+import { ClientService } from '../../client/client.service';
+import { GameService } from '../../game/game.service';
+
 
 @Component({
   selector: 'app-loan-list',
@@ -16,27 +21,53 @@ import { LoanEditComponent } from '../loan-edit/loan-edit.component';
 /**
  * List screen for loan pagination, filtering and CRUD actions.
  */
-export class LoanListComponent {
+export class LoanListComponent implements OnInit {
 
-  pageNumber: number = 0;
+pageNumber: number = 0;
 pageSize: number = 5;
 totalElements: number = 0;
 
-// Filtros opcionales
-filterGameId?: number;
-filterClientId?: number;
-filterDate?: string;
+clients: Client[] = [];
+games: Game[] = [];
+
+filterGameId: number | null = null;
+filterClientId: number | null = null;
+filterDate: Date | null = null;
 
 dataSource = new MatTableDataSource<Loan>();
 displayedColumns: string[] = ['id', 'client', 'game', 'loanDate', 'returnDate', 'action'];
 
-constructor(private loanService: LoanService, public dialog: MatDialog) {}
+constructor(private loanService: LoanService, public dialog: MatDialog, private clientService: ClientService, private gameService: GameService) {}
 
 /**
  * Loads first page on component init.
  */
 ngOnInit(): void {
     this.loadPage();
+    this.gameService.getGames().subscribe(games => this.games = games);
+    this.clientService.getAllClients().subscribe(clients => this.clients = clients);
+}
+
+/**
+ * Reapplies filters from the first page after a filter control changes.
+ */
+onFilterChange(): void {
+    this.pageNumber = 0;
+    this.loadPage();
+}
+
+/**
+ * Resets all loan list filters and reloads the first page.
+ */
+clearFilters(): void {
+    this.filterGameId = null;
+    this.filterClientId = null;
+    this.filterDate = null;
+    this.onFilterChange();
+}
+
+private formatDateParam(d: Date): string {
+    return d.toISOString().split('T')[0];
 }
 
 /**
@@ -55,8 +86,13 @@ loadPage(event?: PageEvent) {
         sort: [{ property: 'id', direction: 'ASC' }]
     };
 
-    // Ahora sí llama al servicio con el pageable correcto
-    this.loanService.getLoans(pageable, this.filterClientId, this.filterGameId, this.filterDate)
+    const dateStr = this.filterDate != null ? this.formatDateParam(this.filterDate) : undefined;
+
+    this.loanService.getLoans(
+            pageable,
+            this.filterClientId ?? undefined,
+            this.filterGameId ?? undefined,
+            dateStr)
         .subscribe(page => {
             this.dataSource.data = page.content;
             this.totalElements = page.totalElements;

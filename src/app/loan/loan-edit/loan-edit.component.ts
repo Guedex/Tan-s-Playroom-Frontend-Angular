@@ -21,13 +21,13 @@ import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dial
 export class LoanEditComponent implements OnInit {
 
     loan!: Loan;
-    games: Game[] = [];        // (1)
-    clients: Client[] = [];    // (2)
+    games: Game[] = [];
+    clients: Client[] = [];
 
     constructor(
         private loanService: LoanService,
-        private gameService: GameService,      // (3)
-        private clientService: ClientService,  // (4)
+        private gameService: GameService,
+        private clientService: ClientService,
         private dialog: MatDialog,
         public dialogRef: MatDialogRef<LoanEditComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
@@ -37,20 +37,18 @@ export class LoanEditComponent implements OnInit {
      * Initializes model and loads dropdown data.
      */
     ngOnInit(): void {
-        // Carga el loan si es edición, o crea uno vacío si es alta
         this.loan = this.data.loan ? Object.assign({}, this.data.loan) : new Loan();
         if (this.loan.id == null) {
             this.loadNextIdForCreate();
         }
 
-        // Carga las listas para los combos
-        this.gameService.getGames().subscribe(games => this.games = games);      // (5)
+        this.gameService.getGames().subscribe(games => this.games = games);
         const pageable: Pageable = {
             pageNumber: 0,
             pageSize: 100,
             sort: [{ property: 'id', direction: 'ASC' }]
         };
-        this.clientService.getClients(pageable).subscribe(clients => this.clients = clients.content); // (6)
+        this.clientService.getClients(pageable).subscribe(clients => this.clients = clients.content);
     }
 
     /**
@@ -60,7 +58,7 @@ export class LoanEditComponent implements OnInit {
      * @returns True when both options represent the same entity.
      */
     compareById(o1: any, o2: any): boolean {
-        return o1?.id === o2?.id;   // (7)
+        return o1?.id === o2?.id;
     }
 
     /**
@@ -121,7 +119,6 @@ export class LoanEditComponent implements OnInit {
                 this.loan.id = lastId + 1;
             },
             error: () => {
-                // Fallback if list cannot be loaded
                 this.loan.id = 1;
             }
         });

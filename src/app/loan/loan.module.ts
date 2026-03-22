@@ -12,8 +12,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { LoanDdMmYyyyDateAdapter } from './loan-dd-mm-yyyy-date-adapter';
 
+/** Display strings for calendar chrome (month/year header, a11y). */
+const LOAN_DATE_FORMATS = {
+  parse: {
+    dateInput: 'dd-MM-yyyy',
+  },
+  display: {
+    dateInput: 'dd-MM-yyyy',
+    monthYearLabel: 'MMM yyyy',
+    dateA11yLabel: 'dd-MM-yyyy',
+    monthYearA11yLabel: 'MMMM yyyy',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -40,6 +53,8 @@ import { MatNativeDateModule } from '@angular/material/core';
       provide: MAT_DIALOG_DATA,
       useValue: {},
     },
+    { provide: DateAdapter, useClass: LoanDdMmYyyyDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: LOAN_DATE_FORMATS },
   ]
 })
 /**
