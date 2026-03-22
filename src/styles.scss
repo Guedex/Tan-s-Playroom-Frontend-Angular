@@ -10,9 +10,13 @@ body.mat-typography h1 {
   font-family: 'Roboto', sans-serif;
 }
 
-/* mat-menu se renderiza en un overlay fuera del header: los estilos del componente no aplican */
+/* Menú de idioma: el panel está en cdk-overlay (fuera del host); estilos globales sí aplican */
 .lang-menu-panel .lang-menu-item-content {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
 }
+
+.lang-menu-panel .lang-menu-item-label {
+  margin-inline-start: 4rem;
+}
+
