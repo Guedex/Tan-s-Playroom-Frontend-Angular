@@ -1,27 +1,72 @@
-# Tutorial
+# CapgeminiTutorial — Frontend Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+Full-stack board game library management application developed as part of the Capgemini training program. The frontend is built with **Angular 18** and **Angular Material**, and connects to a **Spring Boot** REST API backend.
 
-## Development server
+## 🛠️ Tech Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular 18** — Component-based SPA framework
+- **Angular Material** — UI component library (tables, forms, dialogs, paginator)
+- **ngx-translate** — Runtime internationalization (ES / EN)
+- **Spring Boot** *(backend)* — REST API with JPA and H2 database
+- **RxJS** — Reactive data handling
+- **Server-Side Rendering (SSR)** — via Angular Universal
 
-## Code scaffolding
+## ✨ Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Full **CRUD** for: Categories, Authors, Games, Clients and Loans
+- **Filtering and pagination** on all listing views
+- **Business rule validation** on loans:
+  - Return date cannot be before start date
+  - Maximum loan period of 14 days
+  - Same game cannot be loaned to two clients on overlapping dates
+  - A client cannot have more than 2 active loans on the same day
+- **Internationalization (i18n)** — switch between Spanish and English at runtime, persisted via localStorage
+- Confirmation **dialogs** before destructive actions
 
-## Build
+## 📸 Screenshots
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Main Page
+![Main Page](docs/MainPage.png)
 
-## Running unit tests
+### Authors
+![Authors](docs/Authors.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Categories
+![Categories](docs/Categories.png)
 
-## Running end-to-end tests
+### Clients
+![Clients](docs/Clients.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Loans
+![Loans](docs/Loans.png)
 
-## Further help
+### Create Entity
+![Create Entity](docs/CreateEntity.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Edit Entity
+![Edit Entity](docs/EditEntities.png)
+
+### Delete Entity
+![Delete Entity](docs/DeleteEntity.png)
+
+### Filters (1)
+![Filter 1](docs/Filter_1.png)
+
+### Filters (2)
+![Filter 2](docs/Filter_2.png)
+
+### Language Selector
+![Language Selector](docs/LanguageSelect.png)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js v20+
+- Angular CLI v18
+- Java 17+ (for the backend)
+
+### Frontend
+
+```bash
+npm install
+ng serve

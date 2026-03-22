@@ -21,6 +21,9 @@ import { TranslateService } from '@ngx-translate/core';
  */
 export class LoanEditComponent implements OnInit {
 
+    /** True when opening from "new loan"; false when editing an existing row (do not infer from loan.id — create flow pre-fills next id). */
+    isCreateMode = false;
+
     loan!: Loan;
     games: Game[] = [];
     clients: Client[] = [];
@@ -39,8 +42,9 @@ export class LoanEditComponent implements OnInit {
      * Initializes model and loads dropdown data.
      */
     ngOnInit(): void {
+        this.isCreateMode = this.data?.loan == null;
         this.loan = this.data.loan ? Object.assign({}, this.data.loan) : new Loan();
-        if (this.loan.id == null) {
+        if (this.isCreateMode) {
             this.loadNextIdForCreate();
         }
 
