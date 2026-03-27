@@ -83,9 +83,41 @@ Los textos están en `public/i18n/es.json` y `en.json`. El idioma se puede cambi
 
 ## Capturas
 
-Pantallas de referencia en `docs/` (listados, filtros, altas/bajas, selector de idioma). Los nombres de archivo siguen
-el inglés histórico del repo; el contenido de la UI depende del idioma activo.
+### Página principal
+![Main Page](docs/MainPage.png)
 
+### Autores
+![Authors](docs/Authors.png)
+
+### Categorias
+![Categories](docs/Categories.png)
+
+### Clientes
+![Clients](docs/Clients.png)
+
+### Prestamos
+![Loans](docs/Loans.png)
+
+### Crear Entidad
+![Create Entity](docs/CreateEntity.png)
+
+### Editar Entidad
+![Edit Entity](docs/EditEntities.png)
+
+### Borrar Entidad
+![Delete Entity](docs/DeleteEntity.png)
+
+### Filtros (1)
+![Filter 1](docs/Filter_1.png)
+
+### Filtros (2)
+![Filter 2](docs/Filter_2.png)
+
+### Selección de lenguaje
+![Language Selector](docs/LanguageSelect.png)
+
+### Control de errores
+![Language Selector](docs/ErrorControl.png)
 ---
 
 ## Pruebas unitarias
