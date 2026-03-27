@@ -35,4 +35,8 @@ export class DialogConfirmationComponent implements OnInit {
   onClose() {
     this.dialogRef.close(true);
   }
+  /** True when the title is the generic error label (matches common.error in i18n). */
+  get isErrorTitle(): boolean {
+    return this.title?.trim().toLowerCase() === 'error';
+  }
 }

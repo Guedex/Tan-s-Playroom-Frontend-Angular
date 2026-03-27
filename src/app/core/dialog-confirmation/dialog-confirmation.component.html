@@ -1,8 +1,10 @@
 <div class="container">
-    <h1>{{title}}</h1>
+    <div class="title" [class.title--error]="isErrorTitle">
+        <h1>{{title}}</h1>
+    </div>
     <div [innerHTML]="description" class="description"></div>
 
     <div class="buttons">
         <button mat-stroked-button (click)="onClose()">{{ 'dialog.ok' | translate }}</button>
     </div>
-</div>  
+</div>
