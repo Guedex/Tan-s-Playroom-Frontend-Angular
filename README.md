@@ -1,72 +1,137 @@
-# CapgeminiTutorial — Frontend Angular
+# Tan's Playroom (frontend)
 
-Full-stack board game library management application developed as part of the Capgemini training program. The frontend is built with **Angular 18** and **Angular Material**, and connects to a **Spring Boot** REST API backend.
+Aplicación web desarrollada con **Angular** que sirve de interfaz para gestionar una ludoteca ficticia: autores,
+categorías, clientes, catálogo de juegos y préstamos. El nombre viene del mismo contexto del tutorial — una ludoteca
+imaginaria llamada Tan's Playroom (en la UI en español aparece como *Ludoteca Tan*).
 
-## 🛠️ Tech Stack
+Este repositorio es el **cliente**: habla con una API REST en **Spring Boot** que vive en otro proyecto. Lo planteé
+con fines puramente educativos, para afianzar Angular (componentes, rutas, servicios HTTP, formularios) y encajar el
+frontend con un backend real ya existente.
 
-- **Angular 18** — Component-based SPA framework
-- **Angular Material** — UI component library (tables, forms, dialogs, paginator)
-- **ngx-translate** — Runtime internationalization (ES / EN)
-- **Spring Boot** *(backend)* — REST API with JPA and H2 database
-- **RxJS** — Reactive data handling
-- **Server-Side Rendering (SSR)** — via Angular Universal
+---
 
-## ✨ Features
+## Stack tecnológico
 
-- Full **CRUD** for: Categories, Authors, Games, Clients and Loans
-- **Filtering and pagination** on all listing views
-- **Business rule validation** on loans:
-  - Return date cannot be before start date
-  - Maximum loan period of 14 days
-  - Same game cannot be loaned to two clients on overlapping dates
-  - A client cannot have more than 2 active loans on the same day
-- **Internationalization (i18n)** — switch between Spanish and English at runtime, persisted via localStorage
-- Confirmation **dialogs** before destructive actions
+| Área | Tecnología |
+|------|------------|
+| Lenguaje | TypeScript (~5.5) |
+| Framework | Angular 18 |
+| UI | Angular Material 18 + CDK |
+| Estilos | SCSS, tema predefinido *azure-blue* |
+| HTTP / estado asíncrono | HttpClient, RxJS 7 |
+| i18n | ngx-translate (carga de JSON desde `public/i18n/`) |
+| SSR | Angular SSR (`@angular/ssr`), Express en `server.ts` |
+| Build | Angular CLI, aplicación `application` (Vite bajo el capó en dev) |
 
-## 📸 Screenshots
+---
 
-### Main Page
-![Main Page](docs/MainPage.png)
+## Arquitectura (frontend)
 
-### Authors
-![Authors](docs/Authors.png)
+La app está organizada de forma clásica en Angular:
 
-### Categories
-![Categories](docs/Categories.png)
+1. **Módulos por dominio** — `category`, `author`, `game`, `client`, `loan`, más un `core` con cabecera y diálogos
+   reutilizables. Cada feature encapsula sus pantallas y declara lo que necesita.
+2. **Routing** — `AppRoutingModule` carga los listados y formularios; la navegación principal va en la barra superior.
+3. **Servicios** — Llamadas REST al backend (`http://localhost:8080/...`) con `HttpClient`; los componentes se suscriben
+   y muestran tablas, filtros o diálogos según la respuesta.
+4. **Presentación** — Tablas Material, formularios reactivos o con `ngModel` donde encaja, y diálogos (`MatDialog`)
+   para altas, ediciones y confirmaciones.
 
-### Clients
-![Clients](docs/Clients.png)
+No es microfrontends ni Nx: es un monolito front razonable para un curso, fácil de seguir carpeta por carpeta.
 
-### Loans
-![Loans](docs/Loans.png)
+---
 
-### Create Entity
-![Create Entity](docs/CreateEntity.png)
+## Requisitos previos
 
-### Edit Entity
-![Edit Entity](docs/EditEntities.png)
+- **Node.js** 20 o superior (recomendado alinear con lo que uses en el curso).
+- **npm** (viene con Node). No hace falta instalar Angular CLI de forma global si usas `npx ng ...`.
+- El **backend Spring Boot** levantado si quieres ver datos reales (por defecto en el puerto **8080**).
 
-### Delete Entity
-![Delete Entity](docs/DeleteEntity.png)
+---
 
-### Filters (1)
-![Filter 1](docs/Filter_1.png)
+## Cómo ejecutar la aplicación
 
-### Filters (2)
-![Filter 2](docs/Filter_2.png)
+En la raíz del proyecto (donde está el `package.json`):
 
-### Language Selector
-![Language Selector](docs/LanguageSelect.png)
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js v20+
-- Angular CLI v18
-- Java 17+ (for the backend)
-
-### Frontend
-
-```bash
+```powershell
 npm install
-ng serve
+npx ng serve
+```
+
+Abre el navegador en `http://localhost:4200/`. El front espera la API en `http://localhost:8080`; si no hay servidor,
+verás errores de red en las pantallas que consultan datos.
+
+**Build de producción:**
+
+```powershell
+npx ng build
+```
+
+Salida en `dist/tutorial/`.
+
+**Servidor SSR (si lo necesitas probar):** tras un build, el script del `package.json` arranca Node con el bundle del
+servidor. En el día a día del tutorial suele bastar con `ng serve`.
+
+---
+
+## Internacionalización
+
+Los textos están en `public/i18n/es.json` y `en.json`. El idioma se puede cambiar en la cabecera y se guarda en
+`localStorage` para la próxima visita.
+
+---
+
+## Capturas
+
+Pantallas de referencia en `docs/` (listados, filtros, altas/bajas, selector de idioma). Los nombres de archivo siguen
+el inglés histórico del repo; el contenido de la UI depende del idioma activo.
+
+---
+
+## Pruebas unitarias
+
+```powershell
+npx ng test
+```
+
+Usa Karma + Jasmine. No es una suite enorme; está pensada sobre todo para componentes y servicios clave.
+
+---
+
+## Estructura del repositorio (resumen)
+
+```
+Tutorial/                    # Este repo (frontend Angular)
+├── public/
+│   └── i18n/                # Traducciones ES / EN
+├── src/
+│   ├── app/
+│   │   ├── core/            # Cabecera, diálogos compartidos
+│   │   ├── category/ | author/ | game/ | client/ | loan/
+│   │   ├── app.module.ts
+│   │   └── app-routing.module.ts
+│   ├── styles.scss
+│   └── index.html
+├── angular.json
+├── package.json
+├── server.ts                # Entrada SSR + Express
+└── docs/                    # Capturas
+```
+
+El backend Spring Boot suele vivir en otro directorio o repositorio del mismo curso (módulo Maven con `mvnw`).
+
+---
+
+## Qué practiqué aquí
+
+- Montar una SPA con **Angular** (módulos, rutas, servicios inyectables).
+- Consumir una **API REST** con `HttpClient` y manejar errores (por ejemplo restricciones al borrar con préstamos
+  relacionados).
+- Construir interfaz con **Angular Material** (tablas, formularios, diálogos, paginación).
+- Añadir **i18n** en runtime con ngx-translate y archivos JSON.
+- Tocar **SSR/prerender** de Angular sin convertirlo en el objetivo principal del ejercicio.
+
+---
+
+Si algo no arranca, lo primero es comprobar que el backend responde en el puerto esperado y que no hay otro proceso
+ocupando el 4200 o el 8080.
