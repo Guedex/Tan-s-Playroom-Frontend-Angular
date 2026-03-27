@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Game } from '../../model/Game';
 
 @Component({
@@ -17,11 +17,10 @@ export class GameItemComponent implements OnInit {
     /** Game entity displayed by the card. */
     @Input() game!: Game;
 
+    @Output() deleteRequest = new EventEmitter<Game>();
+
     constructor() { }
 
-    /**
-     * Angular lifecycle hook reserved for future logic.
-     */
     ngOnInit(): void {
     }
 
@@ -34,4 +33,9 @@ export class GameItemComponent implements OnInit {
         return '/foto.png';
     }
 
+    onDeleteClick(event: MouseEvent): void {
+        event.stopPropagation();
+        event.preventDefault();
+        this.deleteRequest.emit(this.game);
+    }
 }

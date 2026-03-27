@@ -9,6 +9,7 @@ import { Game } from '../../game/model/Game';
 import { Client } from '../../client/model/Client';
 import { Pageable } from '../../core/Model/Page/Pageable';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
+import { extractHttpErrorText } from '../../core/http-error.util';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -96,17 +97,8 @@ export class LoanEditComponent implements OnInit {
      * @param err HTTP error response object.
      * @returns Message text to display in UI.
      */
-    private getBackendErrorMessage(err: any): string {
-        if (typeof err?.error === 'string' && err.error.trim().length > 0) {
-            return err.error;
-        }
-        if (typeof err?.error?.message === 'string' && err.error.message.trim().length > 0) {
-            return err.error.message;
-        }
-        if (typeof err?.message === 'string' && err.message.trim().length > 0) {
-            return err.message;
-        }
-        return this.translate.instant('loan.save_error_unexpected');
+    private getBackendErrorMessage(err: unknown): string {
+        return extractHttpErrorText(err) ?? this.translate.instant('loan.save_error_unexpected');
     }
 
     /**

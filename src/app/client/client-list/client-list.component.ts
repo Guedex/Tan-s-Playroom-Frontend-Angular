@@ -8,6 +8,7 @@ import { ClientEditComponent } from '../client-edit/client-edit.component';
 import { Pageable } from '../../core/Model/Page/Pageable';
 import { PageEvent } from '@angular/material/paginator';
 import { DialogConfirmationComponent } from "../../core/dialog-confirmation/dialog-confirmation.component";
+import { extractHttpErrorText, isReferentialIntegrityDeleteError } from '../../core/http-error.util';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -108,8 +109,19 @@ editClient(client: Client) {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.clientService.deleteClient(client.id).subscribe(result => {
-          this.ngOnInit();
+        this.clientService.deleteClient(client.id).subscribe({
+          next: () => this.ngOnInit(),
+          error: (err) => {
+            const description = isReferentialIntegrityDeleteError(err)
+              ? this.translate.instant('client.delete_error_blocked_loan')
+              : (extractHttpErrorText(err) ?? this.translate.instant('client.unexpected_error'));
+            this.dialog.open(DialogConfirmationComponent, {
+              data: {
+                title: this.translate.instant('common.error'),
+                description
+              }
+            });
+          }
         });
       }
     });

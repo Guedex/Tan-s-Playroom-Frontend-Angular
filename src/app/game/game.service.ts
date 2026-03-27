@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Game } from './model/Game';
@@ -63,4 +63,11 @@ export class GameService {
         if (params == '') return url;
         else return url + '?'+params;
     }
+    /**
+     * Deletes a game by id.
+     */
+    deleteGame(idGame: number): Observable<void> {
+        return this.http.delete<void>('http://localhost:8080/game/' + idGame);
+    }
 }
+

@@ -70,7 +70,12 @@
     "card_category": "Category: ",
     "card_author": "Author: ",
     "card_nationality": "Nationality: ",
-    "photo_alt_prefix": "Photo of "
+    "photo_alt_prefix": "Photo of ",
+    "delete_title": "Delete game",
+    "delete_message": "If you delete this game, its data will be lost.<br>Delete this game?",
+    "delete_error_blocked_loan": "This game cannot be deleted while it is part of a current or future loan.",
+    "delete_button_aria": "Delete game",
+    "delete_error_unexpected": "The game could not be deleted."
   },
   "client": {
     "new_client": "New client",
@@ -81,7 +86,8 @@
     "delete_title": "Delete client",
     "delete_message": "If you delete this client, their data will be lost.<br> Delete this client?",
     "duplicate_name_error": "A client with that name already exists.",
-    "unexpected_error": "Unexpected error. Please try again."
+    "unexpected_error": "Unexpected error. Please try again.",
+    "delete_error_blocked_loan": "This client cannot be deleted while they are part of a current or future loan."
   },
   "loan": {
     "list_title": "Loans",

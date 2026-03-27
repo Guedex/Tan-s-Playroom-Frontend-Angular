@@ -1,16 +1,25 @@
-<div class="container">
+﻿<div class="container">
     <mat-card>
-        <div class="photo">
-            <img [src]="coverImageSrc" [attr.alt]="('game.photo_alt_prefix' | translate) + game.title">
-        </div>
-        <div class="detail">
-            <div class="title">{{game.title}}</div>
-            <div class="properties">
-                <div><i>{{ 'game.card_age' | translate }}</i>+{{game.age}}</div>
-                <div><i>{{ 'game.card_category' | translate }}</i>{{game.category.name}}</div>
-                <div><i>{{ 'game.card_author' | translate }}</i>{{game.author.name}}</div>
-                <div><i>{{ 'game.card_nationality' | translate }}</i>{{game.author.nationality}}</div>
+        <div class="card-main">
+            <div class="photo">
+                <img [src]="coverImageSrc" [attr.alt]="('game.photo_alt_prefix' | translate) + game.title">
             </div>
+            <div class="detail">
+                <div class="title">{{game.title}}</div>
+                <div class="properties">
+                    <div><i>{{ 'game.card_age' | translate }}</i>+{{game.age}}</div>
+                    <div><i>{{ 'game.card_category' | translate }}</i>{{game.category.name}}</div>
+                    <div><i>{{ 'game.card_author' | translate }}</i>{{game.author.name}}</div>
+                    <div><i>{{ 'game.card_nationality' | translate }}</i>{{game.author.nationality}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="card-actions" (click)="$event.stopPropagation()">
+            <button mat-icon-button type="button" color="warn"
+                [attr.aria-label]="'game.delete_button_aria' | translate"
+                (click)="onDeleteClick($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </mat-card>
 </div>

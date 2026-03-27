@@ -5,6 +5,12 @@ import { Category } from '../../category/model/Category';
 import { GameEditComponent } from '../game-edit/game-edit.component';
 import { GameService } from '../game.service';
 import { Game } from '../model/Game';
+import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
+import {
+  extractHttpErrorText,
+  isReferentialIntegrityDeleteError
+} from '../../core/http-error.util';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-game-list',
@@ -25,6 +31,7 @@ export class GameListComponent implements OnInit {
         private gameService: GameService,
         private categoryService: CategoryService,
         public dialog: MatDialog,
+        private translate: TranslateService,
     ) { }
 
     /**
@@ -87,6 +94,37 @@ export class GameListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             this.onSearch();
+        });
+    }
+
+    /**
+     * Confirms and deletes a game after backend rules allow it.
+     */
+    deleteGame(game: Game): void {
+        const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+            data: {
+                title: this.translate.instant('game.delete_title'),
+                description: this.translate.instant('game.delete_message')
+            }
+        });
+        dialogRef.afterClosed().subscribe((confirmed) => {
+            if (!confirmed) {
+                return;
+            }
+            this.gameService.deleteGame(game.id).subscribe({
+                next: () => this.onSearch(),
+                error: (err) => {
+                    const description = isReferentialIntegrityDeleteError(err)
+                        ? this.translate.instant('game.delete_error_blocked_loan')
+                        : (extractHttpErrorText(err) ?? this.translate.instant('game.delete_error_unexpected'));
+                    this.dialog.open(DialogConfirmationComponent, {
+                        data: {
+                            title: this.translate.instant('common.error'),
+                            description
+                        }
+                    });
+                }
+            });
         });
     }
 }

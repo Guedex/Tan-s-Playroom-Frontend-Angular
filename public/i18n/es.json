@@ -70,7 +70,12 @@
     "card_category": "Categoría: ",
     "card_author": "Autor: ",
     "card_nationality": "Nacionalidad: ",
-    "photo_alt_prefix": "Foto de "
+    "photo_alt_prefix": "Foto de ",
+    "delete_title": "Eliminar juego",
+    "delete_message": "Si elimina el juego se perderán sus datos.<br>¿Desea eliminar el juego?",
+    "delete_error_blocked_loan": "No se puede eliminar este juego mientras figure en un préstamo actual o futuro.",
+    "delete_button_aria": "Eliminar juego",
+    "delete_error_unexpected": "No se ha podido eliminar el juego."
   },
   "client": {
     "new_client": "Nuevo cliente",
@@ -81,7 +86,8 @@
     "delete_title": "Eliminar cliente",
     "delete_message": "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?",
     "duplicate_name_error": "Ya existe un cliente con ese nombre.",
-    "unexpected_error": "Error inesperado. Inténtalo de nuevo."
+    "unexpected_error": "Error inesperado. Inténtalo de nuevo.",
+    "delete_error_blocked_loan": "No se puede eliminar este cliente mientras figure en un préstamo actual o futuro."
   },
   "loan": {
     "list_title": "Listado de Préstamos",
