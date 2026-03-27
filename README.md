@@ -1,11 +1,11 @@
 # Tan's Playroom (frontend)
 
-Aplicación web desarrollada con **Angular** que sirve de interfaz para gestionar una ludoteca ficticia: autores,
-categorías, clientes, catálogo de juegos y préstamos. El nombre viene del mismo contexto del tutorial — una ludoteca
-imaginaria llamada Tan's Playroom (en la UI en español aparece como *Ludoteca Tan*).
+Aplicación web desarrollada con **Angular** que sirve de interfaz para gestionar "Tan´s Playroom" una ludoteca ficticia: autores,
+categorías, clientes, catálogo de juegos y préstamos (en la UI en español aparece como *Ludoteca Tan*).
 
-Este repositorio es el **cliente**: habla con una API REST en **Spring Boot** que vive en otro proyecto. Lo planteé
-con fines puramente educativos, para afianzar Angular (componentes, rutas, servicios HTTP, formularios) y encajar el
+Este repositorio es el **cliente**: habla con una API REST en **Spring Boot** que reside en:
+https://github.com/Guedex/Tan-s-Playroom-Backend-Springboot. 
+Lo planteé con fines puramente educativos, para afianzar Angular (componentes, rutas, servicios HTTP, formularios) y encajar el
 frontend con un backend real ya existente.
 
 ---
@@ -36,8 +36,6 @@ La app está organizada de forma clásica en Angular:
    y muestran tablas, filtros o diálogos según la respuesta.
 4. **Presentación** — Tablas Material, formularios reactivos o con `ngModel` donde encaja, y diálogos (`MatDialog`)
    para altas, ediciones y confirmaciones.
-
-No es microfrontends ni Nx: es un monolito front razonable para un curso, fácil de seguir carpeta por carpeta.
 
 ---
 
@@ -150,10 +148,6 @@ Tutorial/                    # Este repo (frontend Angular)
 └── docs/                    # Capturas
 ```
 
-El backend Spring Boot suele vivir en otro directorio o repositorio del mismo curso (módulo Maven con `mvnw`).
-
----
-
 ## Qué practiqué aquí
 
 - Montar una SPA con **Angular** (módulos, rutas, servicios inyectables).
@@ -164,6 +158,8 @@ El backend Spring Boot suele vivir en otro directorio o repositorio del mismo cu
 - Tocar **SSR/prerender** de Angular sin convertirlo en el objetivo principal del ejercicio.
 
 ---
+
+## Troubleshooting
 
 Si algo no arranca, lo primero es comprobar que el backend responde en el puerto esperado y que no hay otro proceso
 ocupando el 4200 o el 8080.
