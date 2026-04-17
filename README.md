@@ -21,7 +21,7 @@ frontend con un backend real ya existente.
 | HTTP / estado asíncrono | HttpClient, RxJS 7 |
 | i18n | ngx-translate (carga de JSON desde `public/i18n/`) |
 | SSR | Angular SSR (`@angular/ssr`), Express en `server.ts` |
-| Build | Angular CLI, aplicación `application` (Vite bajo el capó en dev) |
+| Build | Angular CLI, aplicación `application`  |
 
 ---
 
